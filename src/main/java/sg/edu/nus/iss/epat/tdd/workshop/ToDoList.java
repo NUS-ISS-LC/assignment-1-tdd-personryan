@@ -7,6 +7,7 @@ public class ToDoList {
 
    public void addTask(Task task) {
       // Add code here
+      tasks.put(task.getDescription(), task);
    }
 
    public void completeTask(String description) {
@@ -15,17 +16,21 @@ public class ToDoList {
 
    public boolean getStatus(String description) {
       // Add code here
-      return false;
+      Task task = tasks.get(description);
+      boolean taskStatus = task.isComplete();
+      return taskStatus;
    }
 
    public Task getTask(String description) {
       // Add code here
-      return null;
+      Task task = tasks.get(description);
+      return task;
    }
 
    public Task removeTask(String description) {
       // Add code here
-      return null;
+      Task task = tasks.remove(description);
+      return task;
    }
 
    public Collection<Task> getAllTasks() {
@@ -34,6 +39,12 @@ public class ToDoList {
 
    public Collection<Task> getCompletedTasks() {
       // Add code here
-      return null;
+      java.util.List<Task> completed = new java.util.ArrayList<>();
+      for (Task t : tasks.values()) {
+         if (t != null && t.isComplete()) {
+               completed.add(t);
+         }
+      }
+      return completed;
    }
 }
